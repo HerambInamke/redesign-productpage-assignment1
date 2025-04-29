@@ -20,14 +20,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     aboutRef,
 }) => {
     return (
-        <div className="relative min-h-screen bg-gradient-to-br from-[#01052f] to-[#1a1f4b] overflow-hidden">
+        <div className="relative min-h-screen bg-white overflow-hidden">
             {/* Background Elements */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-[#01052f]/30"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-white/30"></div>
             
             {/* Animated Floating Elements */}
             <motion.div 
-                className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"
+                className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"
                 animate={{
                     y: [0, 20, 0],
                     scale: [1, 1.1, 1],
@@ -39,7 +39,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 }}
             />
             <motion.div 
-                className="absolute bottom-40 right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-xl"
+                className="absolute bottom-40 right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-xl"
                 animate={{
                     y: [0, -30, 0],
                     scale: [1, 1.2, 1],
@@ -62,7 +62,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-5rem)]">
                     {/* Content Section */}
                     <motion.div 
-                        className="text-white space-y-8 relative z-10"
+                        className="text-gray-900 space-y-8 relative z-10"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
@@ -87,7 +87,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                         </motion.h1>
                         
                         <motion.p 
-                            className="text-lg sm:text-xl text-gray-300 max-w-2xl"
+                            className="text-lg sm:text-xl text-gray-600 max-w-2xl"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.8 }}
@@ -119,7 +119,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                             />
                             <Button 
                                 variant='plain'
-                                className='rounded-lg px-8 py-3 text-lg font-semibold border-2 border-white/20 text-white hover:bg-white/10 transition-colors backdrop-blur-sm'
+                                className='rounded-lg px-8 py-3 text-lg font-semibold border-2 border-primary/20 text-primary hover:bg-primary/10 transition-colors backdrop-blur-sm'
                                 onClick={() => scrollToSection(featuresRef)}
                             >
                                 See How It Works
@@ -133,7 +133,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1, duration: 0.8 }}
                         >
-                            <p className="text-gray-400 text-sm mb-4">Trusted by leading healthcare providers</p>
+                            <p className="text-gray-500 text-sm mb-4">Trusted by leading healthcare providers</p>
                             <div className="grid grid-cols-3 gap-8">
                                 <motion.div 
                                     className="text-center bg-white/5 backdrop-blur-sm p-4 rounded-xl hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
@@ -142,7 +142,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                                         2100<span className="text-primary">+</span>
                                     </h2>
-                                    <p className="text-sm sm:text-base text-gray-300 mt-2">Qualified Doctors</p>
+                                    <p className="text-sm sm:text-base text-gray-500 mt-2">Qualified Doctors</p>
                                 </motion.div>
                                 <motion.div 
                                     className="text-center bg-white/5 backdrop-blur-sm p-4 rounded-xl hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
@@ -151,7 +151,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                                         1000<span className="text-primary">+</span>
                                     </h2>
-                                    <p className="text-sm sm:text-base text-gray-300 mt-2">Hospitals</p>
+                                    <p className="text-sm sm:text-base text-gray-500 mt-2">Hospitals</p>
                                 </motion.div>
                                 <motion.div 
                                     className="text-center bg-white/5 backdrop-blur-sm p-4 rounded-xl hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
@@ -160,7 +160,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                                     <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                                         800<span className="text-primary">+</span>
                                     </h2>
-                                    <p className="text-sm sm:text-base text-gray-300 mt-2">Treatment Plans</p>
+                                    <p className="text-sm sm:text-base text-gray-500 mt-2">Treatment Plans</p>
                                 </motion.div>
                             </div>
                         </motion.div>
@@ -180,7 +180,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                                 alt="Healthcare AI Platform"
                                 className="relative w-full h-full object-cover rounded-2xl"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#01052f]/50 to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent"></div>
                         </div>
                     </motion.div>
                 </div>
@@ -188,7 +188,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             
             {/* Scroll Down Indicator */}
             <motion.div 
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 cursor-pointer"
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-primary/70 cursor-pointer"
                 animate={{
                     y: [0, 10, 0],
                 }}

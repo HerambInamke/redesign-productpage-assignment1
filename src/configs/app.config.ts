@@ -1,3 +1,5 @@
+import { ROOT } from '@/constants/route.constant'
+
 export type AppConfig = {
     apiPrefix: string
     authenticatedEntryPath: string
@@ -9,8 +11,8 @@ export type AppConfig = {
 
 const appConfig: AppConfig = {
     apiPrefix: '/api',
-    authenticatedEntryPath: '/',
-    unAuthenticatedEntryPath: '/',
+    authenticatedEntryPath: ROOT,
+    unAuthenticatedEntryPath: ROOT,
     locale: 'en',
     accessTokenPersistStrategy: 'cookies',
     enableMock: true,

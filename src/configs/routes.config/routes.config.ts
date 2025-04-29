@@ -6,6 +6,12 @@ import type { Routes } from '@/@types/routes'
 export const publicRoutes: Routes = [...authRoute]
 
 export const protectedRoutes: Routes = [
+    {
+        key: 'homePage',
+        path: '/',
+        component: lazy(() => import('@/views/Home')),
+        authority: []
+    },
     /** Example purpose only, please remove */
     {
         key: 'singleMenuItem',
@@ -46,12 +52,6 @@ export const protectedRoutes: Routes = [
             () => import('@/views/demo/GroupCollapseMenuItemView2'),
         ),
         authority: [],
-    },
-    {
-        key: 'homePage',
-        path: `/hello`,
-        component: lazy(() => import('@/views/Home')),
-        authority: []
     },
     ...othersRoute,
 ]
