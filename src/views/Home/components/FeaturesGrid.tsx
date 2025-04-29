@@ -4,69 +4,113 @@ import { BsDatabase } from 'react-icons/bs';
 import { FaUserSecret } from 'react-icons/fa';
 import { FiFileText } from 'react-icons/fi';
 import { LuLanguages } from 'react-icons/lu';
+import { motion } from 'framer-motion';
 
 const solutions = [
   {
-    icon: <BiGlobeAlt className="w-6 h-6" />,
-    title: "Custom AI-Powered Website",
-    description: "Intelligent, responsive websites tailored to healthcare providers with automated patient interactions.",
-    color: "from-blue-500 to-blue-600"
+    icon: <BiGlobeAlt className="w-8 h-8" />,
+    title: "AI-Powered Website",
+    description: "Build an intelligent, responsive healthcare website that automates patient interactions and streamlines appointments.",
+    color: "from-blue-500 to-blue-600",
+    category: "Digital Presence"
   },
   {
-    icon: <FaUserSecret className="w-6 h-6" />,
-    title: "Enhanced Patient Conversion",
-    description: "Smart conversion optimization tools to turn visitors into patients with personalized experiences.",
-    color: "from-purple-500 to-purple-600"
+    icon: <FaUserSecret className="w-8 h-8" />,
+    title: "Patient Conversion",
+    description: "Convert more visitors into patients with personalized experiences and smart engagement tools.",
+    color: "from-purple-500 to-purple-600",
+    category: "Growth"
   },
   {
-    icon: <BiMessageSquare className="w-6 h-6" />,
-    title: "Real-Time Query Handling",
-    description: "Instant response system for patient inquiries with AI-powered chat support.",
-    color: "from-green-500 to-green-600"
+    icon: <BiMessageSquare className="w-8 h-8" />,
+    title: "Smart Communication",
+    description: "Handle patient inquiries 24/7 with AI-powered chat support and automated responses.",
+    color: "from-green-500 to-green-600",
+    category: "Automation"
   },
   {
-    icon: <FiFileText className="w-6 h-6" />,
-    title: "Medical Report Analysis",
-    description: "Advanced AI analysis of medical reports for quick and accurate patient assessments.",
-    color: "from-orange-500 to-orange-600"
+    icon: <FiFileText className="w-8 h-8" />,
+    title: "Medical Reports AI",
+    description: "Analyze medical reports instantly with advanced AI for accurate patient assessments.",
+    color: "from-orange-500 to-orange-600",
+    category: "Intelligence"
   },
   {
-    icon: <BiTrendingUp className="w-6 h-6" />,
-    title: "Improved Lead Generation",
-    description: "Data-driven lead generation strategies to attract and engage potential patients.",
-    color: "from-pink-500 to-pink-600"
+    icon: <BiTrendingUp className="w-8 h-8" />,
+    title: "Lead Generation",
+    description: "Generate and nurture qualified patient leads with data-driven strategies.",
+    color: "from-pink-500 to-pink-600",
+    category: "Growth"
   },
   {
-    icon: <BsDatabase className="w-6 h-6" />,
-    title: "Comprehensive Healthcare Database",
-    description: "Extensive medical information database for accurate patient guidance and support.",
-    color: "from-indigo-500 to-indigo-600"
+    icon: <BsDatabase className="w-8 h-8" />,
+    title: "Healthcare Database",
+    description: "Access comprehensive medical information for better patient guidance and support.",
+    color: "from-indigo-500 to-indigo-600",
+    category: "Intelligence"
   },
   {
-    icon: <LuLanguages className="w-6 h-6" />,
-    title: "Multilingual Support",
-    description: "Breaking language barriers with comprehensive multilingual communication tools.",
-    color: "from-red-500 to-red-600"
+    icon: <LuLanguages className="w-8 h-8" />,
+    title: "Global Reach",
+    description: "Break language barriers with comprehensive multilingual support for international patients.",
+    color: "from-red-500 to-red-600",
+    category: "Digital Presence"
   },
   {
-    icon: <BiCreditCard className="w-6 h-6" />,
-    title: "Seamless Payment Handling",
-    description: "Secure and efficient payment processing for medical services globally.",
-    color: "from-teal-500 to-teal-600"
+    icon: <BiCreditCard className="w-8 h-8" />,
+    title: "Payment Processing",
+    description: "Handle payments securely and efficiently with integrated global payment solutions.",
+    color: "from-teal-500 to-teal-600",
+    category: "Automation"
   },
   {
-    icon: <BiSearch className="w-6 h-6" />,
-    title: "Marketing And SEO Support",
-    description: "Optimized digital presence with advanced SEO and marketing strategies.",
-    color: "from-cyan-500 to-cyan-600"
+    icon: <BiSearch className="w-8 h-8" />,
+    title: "SEO & Marketing",
+    description: "Boost your online visibility with advanced SEO and targeted marketing strategies.",
+    color: "from-cyan-500 to-cyan-600",
+    category: "Growth"
   }
 ];
 
+const categories = ["All", "Digital Presence", "Growth", "Automation", "Intelligence"];
+
 const FeaturesGrid: React.FC = () => {
+  const [activeCategory, setActiveCategory] = React.useState("All");
+
+  const filteredSolutions = activeCategory === "All" 
+    ? solutions 
+    : solutions.filter(solution => solution.category === activeCategory);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
             Our Solutions
           </div>
@@ -76,12 +120,40 @@ const FeaturesGrid: React.FC = () => {
           <p className="text-lg text-gray-600">
             Discover how our AI-powered platform transforms healthcare delivery and improves patient outcomes
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {solutions.map((solution, index) => (
-            <div
+        {/* Category Filter */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeCategory === category
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {filteredSolutions.map((solution, index) => (
+            <motion.div
               key={index}
+              variants={itemVariants}
               className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
               <div 
@@ -100,12 +172,18 @@ const FeaturesGrid: React.FC = () => {
                 <p className="text-gray-600 leading-relaxed">
                   {solution.description}
                 </p>
+
+                <div className="mt-6">
+                  <span className="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
+                    {solution.category}
+                  </span>
+                </div>
               </div>
               
               <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${solution.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}></div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
