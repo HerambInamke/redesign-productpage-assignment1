@@ -1,30 +1,46 @@
 import React, { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
 
-const FAQItem = ({ question, answer, isOpen, onClick }) => (
-    <div className="border-b border-indigo-100">
-		<button
+interface FAQItemProps {
+    question: string;
+    answer: string;
+    isOpen: boolean;
+    onClick: () => void;
+}
+
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, onClick }) => (
+    <div className="border-b border-gray-200 last:border-b-0">
+        <button
             onClick={onClick}
-            className="w-full py-2 px-0 md:px-4 flex items-center justify-between text-left transition-colors hover:bg-indigo-50/50 rounded-lg"
+            className="w-full py-4 px-4 flex items-center justify-between text-left transition-all duration-300 hover:bg-gray-50 rounded-lg group"
+            aria-expanded={isOpen}
         >
-            <h3 className="text-[16px] leading-[1.2] font-medium text-gray-900 pr-8">{question}</h3>
-            <div className={`flex-shrink-0 ml-2 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                <BiChevronDown className="w-5 h-5 text-indigo-600" />
+            <h3 className="text-lg font-semibold text-gray-900 pr-8 group-hover:text-primary transition-colors">
+                {question}
+            </h3>
+            <div 
+                className={`flex-shrink-0 ml-2 transition-transform duration-300 ${
+                    isOpen ? 'rotate-180' : ''
+                }`}
+            >
+                <BiChevronDown className="w-5 h-5 text-primary" />
             </div>
         </button>
 
         <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+            aria-hidden={!isOpen}
         >
-            <div className="p-2 md:p-4 pt-0 text-gray-600">
+            <div className="px-4 pb-4 text-gray-600 leading-relaxed">
                 {answer}
             </div>
         </div>
     </div>
 );
 
-const FAQ = () => {
+const HomeFAQ: React.FC = () => {
     const [openIndex, setOpenIndex] = useState(0);
 
     const faqData = [
@@ -75,31 +91,41 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-16 px-2 md:px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                        Frequently Asked Questions
-                    </h1>
-                    <div className="h-1 w-24 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full" />
-                </div>
+        <section className="py-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-3xl mx-auto">
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                        <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4">
+                            FAQ
+                        </div>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                            Frequently Asked Questions
+                        </h2>
+                        <p className="text-lg text-gray-600 mb-8">
+                            Find answers to common questions about our platform and services
+                        </p>
+                        <div className="h-1 w-24 bg-gradient-to-r from-primary to-blue-600 mx-auto rounded-full" />
+                    </div>
 
-                {/* FAQ Items */}
-                <div className="space-y-2 bg-white rounded-2xl shadow-xl p-6">
-                    {faqData.map((faq, index) => (
-                        <FAQItem
-                            key={index}
-                            question={faq.que}
-                            answer={faq.ans}
-                            isOpen={index === openIndex}
-                            onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
-                        />
-                    ))}
+                    {/* FAQ Items */}
+                    <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                        <div className="space-y-2">
+                            {faqData.map((faq, index) => (
+                                <FAQItem
+                                    key={index}
+                                    question={faq.que}
+                                    answer={faq.ans}
+                                    isOpen={index === openIndex}
+                                    onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
-export default FAQ;
+export default HomeFAQ;

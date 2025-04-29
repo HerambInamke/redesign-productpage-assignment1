@@ -1,0 +1,8 @@
+text-primary
+bg-primary
+border-primary
+text-primary-500
+text-primary-600
+bg-primary-subtle
+text-primary-mild
+text-primary-deep 
